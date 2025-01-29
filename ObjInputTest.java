@@ -1,26 +1,33 @@
 public class ObjInputTest  {
-public static void main(String[] args) {
+    public static void main(String[] args) {
+        // Create a SafeInputObj instance (using default System.in)
+        SafeInputObj sio = new SafeInputObj();
 
-    SafeInputObj pipe = new SafeInputObj(); 
+        // Get non-zero length string
+        String name = sio.getNonZeroLenString("Enter your name: ");
+
+        // Get ranged integer
+        int age = sio.getRangedInt("Enter your age (18-65): ", 18, 65);
 
 
+        // Get unconstrained integer
+        int id = sio.getInt("Enter your ID number: ");
 
-    String name = pipe.getNonZeroLenString("Enter your name: ");
-    System.out.println("Hello, " + name + "!");
 
-    int age = pipe.getRangedInt("Enter your age (18-65): ", 18, 65);
-    System.out.println("You are " + age + " years old.");
+        // Get ranged double
+        double weight = sio.getRangedDouble("Enter your weight (in kg) [40-150]: ", 40, 150);
 
-    double weight = pipe.getDouble("Enter your weight (in kg): ");
-    System.out.println("Your weight is " + weight + " kg.");
 
-    boolean confirmed = pipe.getYNConfirm("Do you want to continue? ");
-    if (confirmed) {
-        System.out.println("Continuing...");
-    } else {
-        System.out.println("Exiting...");
+        // Get unconstrained double
+        double height = sio.getDouble("Enter your height (in meters): ");
+
+
+        // Get Y/N confirmation
+        boolean continueFlag = sio.getYNConfirm("Do you want to continue? ");
+
+
+        // Get string matching regex (example: phone number)
+        String phone = sio.getRegExString("Enter your phone number (format: XXX-XXX-XXXX): ", "\\d{3}-\\d{3}-\\d{4}");
+
     }
-
-    // You can use other methods of SafeInputObj similarly
-}
 }
